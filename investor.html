@@ -9,11 +9,74 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&amp;family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="css/A.animate.css%2bflaticon.css%2btiny-slider.css%2bglightbox.min.css%2baos.css%2bstyle.css%2cMcc.-c5MeVMpI5.css.pagespeed.cf.LtAwX3_VFs.css" />
-    <style>
+	<link rel="icon" href="./images/max-gym-logo.png">
+	<style>
         .me-2 {
-            width: 65%;
-            margin: auto;
             margin-bottom: 6px;
+        }
+        :root {
+            --form-control-color: #f50451;
+        }
+        .form-control-radio {
+            line-height: 1.1;
+            display: flex;
+            margin-right: 20px;
+        }
+        .form-control-radio  input[type=radio] {
+            margin-right: 10px;
+        }
+        .form-control-radio:focus-within {
+            color: var(--form-control-color);
+        }
+        input[type=radio] {
+            /* Add if not using autoprefixer */
+            -webkit-appearance: none;
+            /* Remove most all native input styles */
+            -moz-appearance: none;
+            appearance: none;
+            /* For iOS < 15 */
+            /* Not removed via appearance */
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 0.15em solid currentColor;
+            border-radius: 50%;
+            transform: translateY(-0.075em);
+            display: grid;
+            place-content: center;
+        }
+        input[type=radio]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--form-control-color);
+        }
+        input[type=radio]:checked::before {
+            transform: scale(1);
+            color: var(--form-control-color);
+        }
+        input[type=radio]:checked .form-control-radio {
+            color: var(--form-control-color) !important;
+        }
+        .question{
+            margin: 20px 0;
+        }
+        .question p span{
+            color: #f50451
+        }
+        .submitForm {
+            background: var(--form-control-color);
+            border: 0;
+            color: #fff;
+            padding:8px 30px;
+            border-radius: 4px;
+        }
+        .alert-success{
         }
     </style>
 </head>
@@ -88,10 +151,14 @@
     </section>
     <section class="py-5">
         <div class="container">
+            <h2 style="color: #f50451">REGISTRATION</h2>
             <form>
-                    <input type="text" class="form-control me-2"  name="user_name" placeholder="user name">
-                    <input type="text" class="form-control me-2" name="job" placeholder="job">
-                    <input type="number" class="form-control me-2" name="mobile_number" placeholder="mobile number">
+                    <input type="text" class="form-control me-2" required name="user_name" placeholder="user name">
+                    <input type="text" class="form-control me-2" required name="job" placeholder="job">
+                    <input type="number" class="form-control me-2" required name="mobile_number" placeholder="mobile number">
+                    <input type="email" class="form-control me-2" required name="email" placeholder="email">
+                    <input type="number" class="form-control me-2" required name="venue" placeholder="venue (area)">
+                    <input type="text" class="form-control me-2" required name="place_address" placeholder="address">
                     <select class="form-control me-2" name="covernate">
                         <option name="Alexandria" value="Alexandria">Alexandria</option>
                         <option name="Aswan" value="Aswan">Aswan</option>
@@ -121,49 +188,87 @@
                         <option name="Sohag" value="Sohag">Sohag</option>
                         <option name="Suez" value="Suez">Suez</option>
                     </select>
-                    <div>
-                    <p>Do You Have Place To Invest ?</p>
-                        <div>
-                            <input type="radio" name="place_to_invest" value="1"> yes
-                            <input type="radio" name="place_to_invest" value="0"> No
+                    <div class="question">
+                        <p>Do You Have Place To Invest ? <span>*</span></p>
+                        <div class="d-flex">
+                            <label class="form-control-radio">
+                                <input type="radio" name="place_to_invest" value="1" required/>
+                                <span>Yes</span>
+                            </label>
+                            <label class="form-control-radio">
+                                <input type="radio" name="place_to_invest" value="0"/>
+                               <span>No</span>
+                            </label>
                         </div>
                     </div>
-                    <div>
-                        <p>Partner Type ?</p>
-                        <div>
-                            <input type="radio" name="partner_type" value="Owner"> Owner
-                            <input type="radio" name="partner_type" value="Rented"> Rented
-                            <input type="radio" name="partner_type" value="Broker"> Broker
+                    <div class="question">
+                        <p>Partner Type ? <span>*</span></p>
+                        <div class="d-flex">
+                            <label class="form-control-radio">
+                                <input type="radio" name="partner_type" value="Owner" required/>
+                                <span>Owner</span>
+                            </label>
+                            <label class="form-control-radio">
+                                <input type="radio" name="partner_type" value="Rented"/>
+                                <span>Rented</span>
+                            </label>
+                            <label class="form-control-radio">
+                                <input type="radio" name="partner_type" value="Broker"/>
+                                <span>Broker</span>
+                            </label>
                         </div>
                     </div>
-                    <div>
-                        <p>Activity Type ?</p>
-                        <div>
-                            <input type="radio" name="activity_type" value="Residential"> Residential
-                            <input type="radio" name="activity_type" value="Commercial"> Commercial
-                            <input type="radio" name="activity_type" value="Administrative"> Administrative
+                    <div class="question">
+                        <p>Activity Type ? <span>*</span></p>
+                        <div class="d-flex">
+                            <label class="form-control-radio">
+                                <input type="radio" name="activity_type" value="Residential" required/>
+                                <span>Residential</span>
+                            </label>
+                            <label class="form-control-radio">
+                                <input type="radio" name="activity_type" value="Commercial"/>
+                                <span>Commercial</span>
+                            </label>
+                            <label class="form-control-radio">
+                                <input type="radio" name="activity_type" value="Administrative"/>
+                                <span>Administrative</span>
+                            </label>
                         </div>
                     </div>
-                    <div>
-                        <p>Building Type ?</p>
-                        <div>
-                            <input type="radio" name="type_of_place" value="Residential"> Building
-                            <input type="radio" name="type_of_place" value="Commercial"> Mall
+                    <div class="question">
+                        <p>Building Type ? <span>*</span></p>
+                        <div class="d-flex">
+                            <label class="form-control-radio">
+                                <input type="radio" name="building_type" value="Building" required/>
+                                <span>Building</span>
+                            </label>
+                            <label class="form-control-radio">
+                                <input type="radio" name="building_type" value="Mall"/>
+                                <span>Mall</span>
+                            </label>
                         </div>
                     </div>
-                    <input type="text" class="form-control me-2" name="venue" placeholder="venue (area)">
-                    <input type="text" class="form-control me-2" name="place_address" placeholder="address">
-                    <div>
-                    <p>Have You Ever Franchised Before ?</p>
-                    <div>
-                        <input type="radio" name="franchised_before" value="1"> yes
-                        <input type="radio" name="franchised_before" value="0"> No
+                    <div class="question">
+                    <p>Have You Ever Franchised Before ? <span>*</span></p>
+                        <div class="d-flex">
+                            <label class="form-control-radio">
+                                <input type="radio" name="franchised_before" value="1" required/>
+                                <span>yes</span>
+                            </label>
+                            <label class="form-control-radio">
+                                <input type="radio" name="franchised_before" value="0"/>
+                                <span>No</span>
+                            </label>
+                        </div>
                     </div>
-                        <textarea class="form-control" name="details" placeholder="details"></textarea>
-                        <input type="email" class="form-control me-2" name="email" placeholder="email">
-                        <input type="submit" class="button" value="register" id="but_upload">
+                    <textarea class="form-control mb-3" rows="5" name="details" placeholder="details"></textarea>
+                    <div class="d-flex justify-content-end">
+                        <input type="submit" class="button submitForm" value="register" id="but_upload">
+	                    <input type="reset" id="configreset" value="Reset" hidden>
                     </div>
+	                <div id="alert alert-success" role="alert">aaaaaaaaa</div>
             </form>
+	        <button class="button submitForm" id="bu">test</button>
         </div>
     </section>
 <footer class="ftco-footer">
@@ -269,37 +374,61 @@
     gtag('config', 'UA-23581568-13');
 </script>
 <script defer src="../../../static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"66c364973e455fb8","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.6.0","si":10}'></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+    	$("#bu").click(function(){
+		    console.log('hello')
+		    console.log($("#alert-success"))
+		    $("#alert-success").html('dddddddddddd')
+		   /* $("#alert-success").fadeTo(2000, 500).slideUp(500, function() {
+			    $("#alert-success").slideUp(500);
+		    });*/
+	    })
         var form = $('form'); //valid form selector
         form.on('submit', function (c) {
             c.preventDefault();
-
             var data = new FormData();
-
-
             $.each($('input[type=text]', form ), function(i, fileds){
                 data.append($(fileds).attr('name'), $(fileds).val());
             });
-            if(!files) {
-                console.log('you should upload your Id')
-            } else if (!cv) {
-                console.log('you should upload your CV')
-            } else {
-                $.ajax({
-                    url: 'http://localhost:3000/api/investor/create',
-                    data: data,
+            $.each($('input[type=email]', form ), function(i, fileds){
+
+                data.append($(fileds).attr('name'), $(fileds).val());
+            });
+            $.each($('input[type=number]', form ), function(i, fileds){
+
+                data.append($(fileds).attr('name'), $(fileds).val());
+            });
+            $.each($('input[type=radio]:checked', form ), function(i, fileds){
+                data.append($(fileds).attr('name'), $(fileds).val());
+            });
+            $.each($('select', form ), function(i, fileds){
+                data.append($(fileds).attr('name'), $(fileds).val());
+            });
+            $.each($('textarea', form ), function(i, fileds){
+                data.append($(fileds).attr('name'), $(fileds).val());
+            });
+            var object = {};
+            data.forEach(function(value, key){
+                object[key] = value;
+            });
+            var json = JSON.stringify(object);
+            $.ajax({
+                    url: 'https://max-gym.herokuapp.com/api/investor/create',
+                    data: json,
                     cache: false,
-                    contentType: false,
                     processData: false,
                     type: 'POST',
-                    success: function (c) {
-                        console.log(c)
-                        //code here if you want to show any success message
-                    }
-                });
-                return false;
-            }
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+	                    $('configreset').click()
+	                    $("#alert-success").fadeTo(2000, 500).slideUp(500, function() {
+		                    $("#alert-success").slideUp(500);
+	                    });
+	                    $("#alert-success").text(`${response.message}`)
+                }
+            });
         });
     })
 </script>
